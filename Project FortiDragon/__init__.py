@@ -25,9 +25,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # Dispalys the home page
+    # Displays the home page
     @app.route('/')
     def home():
         return 'Welcome to FortiDragon!'
+
+    def create_app():
+        app = ...
+        # existing code omitted
+
+    # Import init_app from db.py
+    from . import db
+    db.init_app(app)
 
     return app

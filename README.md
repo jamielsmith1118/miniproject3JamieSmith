@@ -31,12 +31,14 @@ The name _**Project FortiDragon**_ represents a fusion of cybersecurity function
  
 * How to run the program
 * Step-by-step bullets
+* Install packages to run the app
 ```
 pip install -r requirements.txt
 ```
  
+Initialize the database
 ```
-Explain how to initialize the database
+flask --app "Project FortiDragon" init-db
 ```
 
 ```

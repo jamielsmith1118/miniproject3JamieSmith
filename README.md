@@ -6,11 +6,11 @@
 # Project Title
  
 **Forged in education. Focused on protection.**  
-**_Project FortiDragon_**: Empowering cybersecurity learning through real-world vulnerability tracking.
+**_FortiDragon_**: Empowering cybersecurity learning through real-world vulnerability tracking.
  
 ## Description
 
-_**Project FortiDragon**_ is a Flask-based web application designed as a vulnerability disclosure and tracking system. Built with cybersecurity principles in mind, it allows users to submit reports about potential security issues within an organization’s systems or network. Each submission becomes a “ticket” in the system that administrators can review, assign severity levels, update remediation status, and document resolution steps. The platform uses a relational SQLite database to store and link user-submitted reports, ensuring data integrity and traceability. Bootstrap provides a modern and responsive interface, including modal dialogs for streamlined updates and report management. The application features user authentication for submitting reports, while general viewing can be done without an account. Although this version focuses on local data management and Flask fundamentals, the project is designed for scalability — future enhancements could include integration with APIs such as the National Vulnerability Database (NVD) for CVE lookups, VirusTotal for threat intelligence, Jira for external ticket synchronization, or other advanced cybersecurity features.
+_**FortiDragon**_ is a Flask-based web application designed as a vulnerability disclosure and tracking system. Built with cybersecurity principles in mind, it allows users to submit reports about potential security issues within an organization’s systems or network. Each submission becomes a “ticket” in the system that administrators can review, assign severity levels, update remediation status, and document resolution steps. The platform uses a relational SQLite database to store and link user-submitted reports, ensuring data integrity and traceability. Bootstrap provides a modern and responsive interface, including modal dialogs for streamlined updates and report management. The application features user authentication for submitting reports, while general viewing can be done without an account. Although this version focuses on local data management and Flask fundamentals, the project is designed for scalability — future enhancements could include integration with APIs such as the National Vulnerability Database (NVD) for CVE lookups, VirusTotal for threat intelligence, Jira for external ticket synchronization, or other advanced cybersecurity features.
 
 The name _**Project FortiDragon**_ represents a fusion of cybersecurity functionality and the lessons learned through a career at Hutchinson Community College and academic work at Fort Hays State University. The project reflects a practical approach to vulnerability management through a custom Flask-based web application.
  
@@ -38,7 +38,7 @@ pip install -r requirements.txt
  
 Initialize the database
 ```
-flask --app "Project FortiDragon" init-db
+flask --app FortiDragon init-db
 ```
 
 ```

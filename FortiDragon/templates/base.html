@@ -13,7 +13,26 @@
       <li><a href="{{ url_for('auth.login') }}">Log In</a>
     {% endif %}
   </ul>
+
+<!-- Optional wrapper if you want banner full width -->
+<div class="banner-full">
+ <header class="banner">
+    <!-- Left Logo (HutchCC Blue Dragons) -->
+    <img src="{{ url_for('static', filename='images/hutchcc_logo.png') }}"
+         alt="HutchCC Logo"
+         class="logo">
+
+
+
+<!-- Right Logo (FHSU Tigers) -->
+<img src="{{ url_for('static', filename='images/fhsu_logo.png') }}"
+     alt="FHSU Logo"
+     class="logo">
+  </header>
+</div>
 </nav>
+
+
 <section class="content">
   <header>
     {% block header %}{% endblock %}

@@ -1,3 +1,31 @@
+/*html { font-family: sans-serif; background: #eee; padding: 1rem; }*/
+/*body { max-width: 960px; margin: 0 auto; background: white; }*/
+/*h1 { font-family: serif; color: red; margin: 1rem 0; }*/
+/*a { color: gold; }*/
+/*hr { border: none; border-top: 1px solid gold; }*/
+/*nav { background: darkblue; display: flex; align-items: center; padding: 0 0.5rem; }*/
+/*nav h1 { flex: auto; margin: 0; }*/
+/*nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }*/
+/*nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }*/
+/*nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }*/
+/*.content { padding: 0 1rem 1rem; }*/
+/*.content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }*/
+/*.content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }*/
+/*.flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid red; }*/
+/*.post > header { display: flex; align-items: flex-end; font-size: 0.85em; }*/
+/*.post > header > div:first-of-type { flex: auto; }*/
+/*.post > header h1 { font-size: 1.5em; margin-bottom: 0; }*/
+/*.post .about { color: slategray; font-style: italic; }*/
+/*.post .body { white-space: pre-line; }*/
+/*.content:last-child { margin-bottom: 0; }*/
+/*.content form { margin: 1em 0; display: flex; flex-direction: column; }*/
+/*.content label { font-weight: bold; margin-bottom: 0.5em; }*/
+/*.content input, .content textarea { margin-bottom: 1em; }*/
+/*.content textarea { min-height: 12em; resize: vertical; }*/
+/*input.danger { color: #cc2f2e; }*/
+/*input[type=submit] { align-self: start; min-width: 10em; }*/
+
+/* ===== Existing Flask tutorial styles (unchanged) ===== */
 html { font-family: sans-serif; background: #eee; padding: 1rem; }
 body { max-width: 960px; margin: 0 auto; background: white; }
 h1 { font-family: serif; color: red; margin: 1rem 0; }
@@ -24,3 +52,76 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .content textarea { min-height: 12em; resize: vertical; }
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
+
+/* ===== New: FortiDragon banner styles ===== */
+
+/* Optional helper if you want the banner to stretch edge-to-edge across the page
+   even though your <body> is max-width: 960px. Wrap the banner in a div.banner-full. */
+.banner-full {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+}
+
+/* Banner container */
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+
+    /* Choose the gradient you want:
+       - Blue → Black:
+         background: linear-gradient(to right, #0033a0, #000000);
+
+       - Red → Gold → Blue → Black (all colors for both schools):
+         background: linear-gradient(to right, #d71920, #ffd700, #0033a0, #000000);
+    */
+    background: linear-gradient(to right, #0033a0, #000000);
+    color: white;
+}
+
+/* Logos on the ends */
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+/* Center nav for the banner */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* Global links are gold, but in the banner we want white.
+   This overrides the global `a { color: gold; }` just for the banner links. */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    transition: text-decoration 0.2s ease;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 600px) {
+    .banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Optional: basic main content spacing */
+main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}

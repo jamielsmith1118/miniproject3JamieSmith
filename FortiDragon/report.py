@@ -46,8 +46,7 @@ def create():
 
 def get_post(id, check_author=True):
     post = get_db().execute(
-        # 'SELECT p.id, title, body, created, author_id, username, severity, mitigation, status'
-        'SELECT p.id, title, body, created, author_id, username,'
+        'SELECT p.id, title, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
@@ -84,7 +83,7 @@ def update(id):
                 (title, body, id)
             )
             db.commit()
-            return redirect(url_for('report.index'))
+            return redirect(url_for('index'))
 
     return render_template('report/update.html', post=post)
 

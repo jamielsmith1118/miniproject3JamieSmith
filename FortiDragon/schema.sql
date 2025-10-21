@@ -17,8 +17,8 @@ CREATE TABLE post (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
-  severity TEXT NOT NULL CHECK ( severity IN ('Info','Low','Medium','High','Critical')),
-  mitigation TEXT,
-  status TEXT NOT NULL DEFAULT 'Open' CHECK ( severity IN ('Open','In Review','On Hold','Resolved','Closed')),
+--   severity TEXT NOT NULL CHECK ( severity IN ('Info','Low','Medium','High','Critical')),
+--   mitigation TEXT,
+--   status TEXT NOT NULL DEFAULT 'Open' CHECK ( severity IN ('Open','In Review','On Hold','Resolved','Closed')),
   FOREIGN KEY (author_id) REFERENCES user (id)
 );

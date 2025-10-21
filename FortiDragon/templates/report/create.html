@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Report Vulnerability{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <!-- Title field (text entry)-->
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+
+    <!-- Body field (text entry) -->
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+
+    <!-- Severity dropdown (dropdown list)
+    <label for="severity">Severity</label>
+    <select name="severity" id="severity" required>
+      <option value="">-- Select Severity --</option>
+      <option value="Info" {% if request.form['severity'] == 'Info' %}selected{% endif %}>Info</option>
+      <option value="Low" {% if request.form['severity'] == 'Low' %}selected{% endif %}>Low</option>
+      <option value="Medium" {% if request.form['severity'] == 'Medium' %}selected{% endif %}>Medium</option>
+      <option value="High" {% if request.form['severity'] == 'High' %}selected{% endif %}>High</option>
+      <option value="Critical" {% if request.form['severity'] == 'Critical' %}selected{% endif %}>Critical</option>
+    </select>
+  -->
+
+    <!-- Mitigation field (text entry)
+    <label for="mitigation">Mitigation</label>
+    <textarea name="mitigation" id="mitigation">{{ request.form['mitigation'] }}</textarea>
+  -->
+
+    <!-- Status dropdown (dropdown list)
+    <label for="status">Status</label>
+    <select name="status" id="status" required>
+      <option value="">-- Select Status --</option>
+      <option value="Open" {% if request.form['status'] == 'Open' %}selected{% endif %}>Open</option>
+      <option value="In Review" {% if request.form['status'] == 'In Review' %}selected{% endif %}>In Review</option>
+      <option value="On Hold" {% if request.form['status'] == 'On Hold' %}selected{% endif %}>On Hold</option>
+      <option value="Resolved" {% if request.form['status'] == 'Resolved' %}selected{% endif %}>Resolved</option>
+      <option value="Closed" {% if request.form['status'] == 'Closed' %}selected{% endif %}>Closed</option>
+    </select>
+    -->
+
+    <!-- Save form -->
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

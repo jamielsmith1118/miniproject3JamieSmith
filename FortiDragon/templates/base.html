@@ -2,8 +2,17 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - FortiDragon</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<!-- Optional wrapper if you want banner full width -->
+<div class="banner-full">
+ <header class="banner">
+    <!-- Left Logo (HutchCC Blue Dragons) -->
+    <img src="{{ url_for('static', filename='images/fhsu_logo.png') }}"
+         alt="FHSU Logo"
+         class="logo">
+ <h1>FortiDragon</h1>
+
 <nav>
-  <h1>Welcome to FortiDragon!</h1>
+
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
@@ -14,23 +23,31 @@
     {% endif %}
   </ul>
 
-<!-- Optional wrapper if you want banner full width -->
-<div class="banner-full">
- <header class="banner">
-    <!-- Left Logo (HutchCC Blue Dragons) -->
-    <img src="{{ url_for('static', filename='images/fhsu_logo.png') }}"
-         alt="FHSU Logo"
-         class="logo">
-
-
-
 <!-- Right Logo (FHSU Tigers) -->
 <img src="{{ url_for('static', filename='images/hutchcc_logo.png') }}"
      alt="HutchCC Logo"
      class="logo">
-  </header>
-</div>
 </nav>
+</header>
+</div>
+
+
+{#<nav>#}
+{#  <h1>Welcome to FortiDragon!</h1>#}
+{#  <ul>#}
+{#    {% if g.user %}#}
+{#      <li><span>{{ g.user['username'] }}</span>#}
+{#      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>#}
+{#    {% else %}#}
+{#      <li><a href="{{ url_for('auth.register') }}">Register</a>#}
+{#      <li><a href="{{ url_for('auth.login') }}">Log In</a>#}
+{#    {% endif %}#}
+{#  </ul>#}
+
+
+
+
+
 
 
 <section class="content">

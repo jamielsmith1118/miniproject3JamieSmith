@@ -40,6 +40,10 @@ Initialize the database
 ```
 flask --app FortiDragon init-db
 ```
+To run the application
+```
+flask --app FortiDragon run
+```
 
 ```
 Explain how to run the web application

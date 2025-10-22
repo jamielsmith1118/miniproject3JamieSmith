@@ -1,36 +1,57 @@
 <!-- base HTML code -->
 <!doctype html>
 <title>{% block title %}{% endblock %} - FortiDragon</title>
+
+{#<!-- Static CSS file -->#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">#}
+
+<!-- Bootstrap CSS file -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+<!-- Static CSS file -->
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Project title -->
+  <div class="container">
+    <h1 class="text-center display-6 fw-bold m-0">FortiDragon</h1>
+
 <!-- Optional wrapper if you want banner full width -->
 <div class="banner-full">
  <header class="banner">
-    <!-- Left Logo (HutchCC Blue Dragons) -->
+    <!-- Left Logo (Fort Hays State University Tigers) -->
     <img src="{{ url_for('static', filename='images/fhsu_logo.png') }}"
          alt="FHSU Logo"
          class="logo">
- <h1>FortiDragon</h1>
+{# <h1>FortiDragon</h1>#}
 
 <nav>
 
   <ul>
     {% if g.user %}
+
       <li><span>{{ g.user['username'] }}</span>
+      <li><a href="{{ url_for('index') }}">Home</a>
+      <li><a href="{{ url_for('index') }}">Submit Report</a>
+      <li><a href="{{ url_for('index') }}">Vulnerabilities</a>
+      <li><a href="{{ url_for('index') }}">User Profile</a>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+      <li><a href="{{ url_for('index') }}">Admin</a>
     {% else %}
+      <li><a href="{{ url_for('index') }}">Home</a>
+      <li><a href="{{ url_for('index') }}">Vulnerabilities</a>
       <li><a href="{{ url_for('auth.register') }}">Register</a>
       <li><a href="{{ url_for('auth.login') }}">Log In</a>
     {% endif %}
   </ul>
 
-<!-- Right Logo (FHSU Tigers) -->
+<!-- Right Logo (Hutchinson Community College Blue Dragons) -->
 <img src="{{ url_for('static', filename='images/hutchcc_logo.png') }}"
      alt="HutchCC Logo"
      class="logo">
 </nav>
 </header>
 </div>
-
+  </div>
 
 <section class="content">
   <header>
@@ -40,4 +61,5 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </section>

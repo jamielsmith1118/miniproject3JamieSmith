@@ -11,7 +11,11 @@
       value="{{ request.form['title'] or post['title'] }}" required>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
-    <input type="submit" value="Save">
+    <!-- <input type="submit" value="Save"> -->
+        <div class="d-flex justify-content-end gap-2 mt-3">
+  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</button>
+</div>
   </form>
   <hr>
   <form action="{{ url_for('report.delete', id=post['id']) }}" method="post">

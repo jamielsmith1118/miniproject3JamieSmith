@@ -44,6 +44,11 @@
     -->
 
     <!-- Save form -->
-    <input type="submit" value="Save">
+    <!-- <input type="submit" value="Save"> -->
+    <div class="d-flex justify-content-end gap-2 mt-3">
+  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</button>
+</div>
+
   </form>
 {% endblock %}

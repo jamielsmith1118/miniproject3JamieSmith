@@ -50,13 +50,16 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # name = request.form['name']
-        password = request.form['password']
         db = get_db()
         error = None
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
+
+        # User not found -> flash and redirect to register
+        if user is None:
+            flash("We appreciate your interest in Project FortiDragon. Please register before using.")
+            return redirect(url_for('auth.register'))
 
         if user is None:
             error = 'Incorrect username.'

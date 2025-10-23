@@ -1,7 +1,8 @@
 # import packages
 import os
 
-from flask import Flask
+from flask import Flask, redirect, render_template, url_for
+
 
 # initialize the app
 def create_app(test_config=None):
@@ -28,7 +29,7 @@ def create_app(test_config=None):
     # Displays the home page
     @app.route('/')
     def home():
-        return 'Welcome to FortiDragon!'
+            return redirect(url_for('report.index'))
 
     def create_app():
         app = ...

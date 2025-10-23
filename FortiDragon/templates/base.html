@@ -1,6 +1,6 @@
 <!-- base HTML code -->
 <!doctype html>
-<title>{% block title %}{% endblock %} - FortiDragon</title>
+<title>{% block title %}{% endblock %} - Project FortiDragon</title>
 
 {#<!-- Static CSS file -->#}
 {#<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">#}
@@ -13,7 +13,7 @@
 
   <!-- Project title -->
   <div class="container">
-    <h1 class="text-center display-6 fw-bold m-0">FortiDragon</h1>
+    <h1 class="text-center display-6 fw-bold m-0">Project FortiDragon</h1>
 
 <!-- Optional wrapper if you want banner full width -->
 <div class="banner-full">
@@ -30,14 +30,14 @@
 
       <li><span>{{ g.user['username'] }}</span>
       <li><a href="{{ url_for('index') }}">Home</a>
-      <li><a href="{{ url_for('index') }}">Submit Report</a>
-      <li><a href="{{ url_for('index') }}">Vulnerabilities</a>
+      <li><a href="{{ url_for('report.vulns') }}">Vulnerabilities</a>
+      <li><a href="{{ url_for('report.create') }}">Submit Report</a>
       <li><a href="{{ url_for('index') }}">User Profile</a>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
       <li><a href="{{ url_for('index') }}">Admin</a>
     {% else %}
       <li><a href="{{ url_for('index') }}">Home</a>
-      <li><a href="{{ url_for('index') }}">Vulnerabilities</a>
+      <li><a href="{{ url_for('report.vulns') }}">Vulnerabilities</a>
       <li><a href="{{ url_for('auth.register') }}">Register</a>
       <li><a href="{{ url_for('auth.login') }}">Log In</a>
     {% endif %}

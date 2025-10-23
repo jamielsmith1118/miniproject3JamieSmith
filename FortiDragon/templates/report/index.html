@@ -1,28 +1,60 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Reports{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('report.create') }}">New</a>
-  {% endif %}
-{% endblock %}
+{% block title %}About – Project FortiDragon{% endblock %}
 
 {% block content %}
-  {% for post in posts %}
-    <article class="post">
-      <header>
-        <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-        </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('report.update', id=post['id']) }}">Edit</a>
-        {% endif %}
-      </header>
-      <p class="body">{{ post['body'] }}</p>
-    </article>
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
-  {% endfor %}
+<h1>About Project FortiDragon</h1>
+
+<p><strong>Forged in education. Focused on protection.</strong><br>
+Project FortiDragon: Empowering cybersecurity learning through real-world vulnerability tracking.</p>
+
+<hr>
+
+<h2>What is Project FortiDragon?</h2>
+<p>
+Project FortiDragon is a Flask-based web application created as part of an advanced programming course.
+It demonstrates how web development and cybersecurity concepts can work together through a simple
+vulnerability disclosure and tracking system.
+</p>
+
+<h2>Purpose</h2>
+<p>
+The goal of this project is to give students and developers hands-on experience building a secure
+web application that manages vulnerability reports, supports user authentication, and uses a database
+to store submissions. It reflects a practical approach to learning cybersecurity principles through real code.
+</p>
+
+<h2>How It Works</h2>
+<ul>
+  <li>Users can create accounts and log in securely.</li>
+  <li>Authenticated users can submit vulnerability reports.</li>
+  <li>Each report can include a title, description, severity, and mitigation steps.</li>
+  <li>Admins or reviewers can view and manage the submitted reports.</li>
+</ul>
+
+<h2>Technology Stack</h2>
+<ul>
+  <li><strong>Backend:</strong> Flask (Python web framework)</li>
+  <li><strong>Database:</strong> SQLite for local data storage</li>
+  <li><strong>Templates:</strong> Jinja2 (Flask’s built-in templating system)</li>
+</ul>
+
+<h2>Future Plans</h2>
+<p>
+Future versions of Project FortiDragon could connect to external APIs such as the
+National Vulnerability Database (NVD), VirusTotal, or Jira to expand automation and
+threat intelligence capabilities.
+</p>
+
+<hr>
+
+<p>
+Created by Jamie Smith as part of the Advanced Programming with Python course.<br>
+Inspired by academic work at Hutchinson Community College and Fort Hays State University.
+</p>
+
+<p>
+<a href="{{ url_for('report.create') }}">Submit a Report</a> |
+<a href="{{ url_for('report.index') }}">View Reports</a>
+</p>
 {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Profile{% endblock %}
+
+{% block content %}
+<h1>Your Profile</h1>
+
+<p><strong>Username:</strong> {{ user['username'] }}</p>
+
+<p><strong>Name:</strong>
+  {% if user['first_name'] or user['last_name'] %}
+    {{ user['first_name'] }} {{ user['last_name'] }}
+  {% else %}
+    <em>Not set</em>
+  {% endif %}
+</p>
+
+<p><strong>Email:</strong>
+  {% if user['email_address'] %}
+    {{ user['email_address'] }}
+  {% else %}
+    <em>Not set</em>
+  {% endif %}
+</p>
+
+<!--{% if user['created'] is defined %}-->
+<!--  <p><strong>Member since:</strong> {{ user['created'] }}</p>-->
+<!--{% endif %}-->
+
+<hr>
+
+<p>
+  <a href="{{ url_for('report.index') }}">Home</a>
+</p>
+{% endblock %}

@@ -10,14 +10,14 @@ bp = Blueprint('report', __name__)
 
 @bp.route('/index')
 def index():
-    db = get_db()
-    posts = db.execute(
-        #'SELECT p.id, title, body, created, author_id, username, severity, mitigation, status'
-        'SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' ORDER BY created DESC'
-    ).fetchall()
-    #return render_template('report/index.html', posts=posts)
+    # db = get_db()
+    # posts = db.execute(
+    #     #'SELECT p.id, title, body, created, author_id, username, severity, mitigation, status'
+    #     'SELECT p.id, title, body, created, author_id, username'
+    #     ' FROM post p JOIN user u ON p.author_id = u.id'
+    #     ' ORDER BY created DESC'
+    # ).fetchall()
+    # #return render_template('report/index.html', posts=posts)
     return render_template('report/index.html')
 
 
@@ -108,3 +108,23 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('report.index'))
+
+# User Profile page
+@bp.route('/profile')
+@login_required
+def profile():
+    """Show the logged-in user's profile."""
+    db = get_db()
+    user = db.execute(
+        'SELECT u.id, u.username, u.first_name, u.last_name, u.email_address '
+        'FROM user AS u '
+        ' WHERE id = ?',
+        (g.user['id'],)
+    ).fetchone()
+
+    # user will never be None here if your auth is correct, but guard anyway:
+    if not user:
+        # fallback: show minimal info from g.user
+        user = g.user
+
+    return render_template('report/profile.html', user=user)

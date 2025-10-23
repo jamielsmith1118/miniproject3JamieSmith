@@ -7,7 +7,10 @@ DROP TABLE IF EXISTS report;
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email_address TEXT NOT NULL
 );
 
 -- Create the report table

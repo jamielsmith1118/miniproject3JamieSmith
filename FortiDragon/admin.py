@@ -15,7 +15,7 @@ def dashboard():
         '''SELECT p.id, p.title, p.status, u.username
            FROM post p JOIN user u ON p.author_id=u.id
            WHERE p.status IN ('Open','In Review')
-           ORDER BY p.created DESC'''
+           ORDER BY p.id DESC'''
     ).fetchall()
     users = db.execute(
         '''SELECT id, username, role, first_name, last_name, email_address

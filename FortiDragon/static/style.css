@@ -125,3 +125,15 @@ main {
     padding: 20px;
     font-family: Arial, sans-serif;
 }
+
+/* Table style */
+  .table-simple {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .table-simple th,
+  .table-simple td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+  }

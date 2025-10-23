@@ -73,16 +73,38 @@ def login():
     return render_template('auth/login.html')
 
 # If the user is already logged in, restore session cookie
+# @bp.before_app_request
+# def load_logged_in_user():
+#     user_id = session.get('user_id')
+#
+#     if user_id is None:
+#         g.user = None
+#     else:
+#         g.user = get_db().execute(
+#             'SELECT * FROM user WHERE id = ?', (user_id,)
+#         ).fetchone()
+
 @bp.before_app_request
 def load_logged_in_user():
+    """Load the logged-in user's data (including role) before every request."""
     user_id = session.get('user_id')
 
     if user_id is None:
         g.user = None
     else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
+        db = get_db()
+        row = db.execute(
+            '''
+            SELECT id, username, first_name, last_name, email_address,
+                   COALESCE(role, 'user') AS role
+            FROM user
+            WHERE id = ?
+            ''',
+            (user_id,)
         ).fetchone()
+
+        # Convert sqlite3.Row -> dict so .get() works in templates
+        g.user = dict(row) if row else None
 
 # Create blueprint for /logout
 @bp.route('/logout')

@@ -28,13 +28,15 @@
   <ul>
     {% if g.user %}
 
-      <li><span>{{ g.user['username'] }}</span>
+      <li><span>Hello, {{ g.user['first_name'] }}</span>
       <li><a href="{{ url_for('index') }}">Home</a>
       <li><a href="{{ url_for('report.vulns') }}">Vulnerabilities</a>
       <li><a href="{{ url_for('report.create') }}">Submit Report</a>
       <li><a href="{{ url_for('report.profile') }}">User Profile</a>
+      {% if g.user and g.user.get('role') == 'admin' %}
+        <li><a href="{{ url_for('admin.dashboard') }}">Admin</a></li>
+      {% endif %}
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-      <li><a href="{{ url_for('index') }}">Admin</a>
     {% else %}
       <li><a href="{{ url_for('index') }}">Home</a>
       <li><a href="{{ url_for('report.vulns') }}">Vulnerabilities</a>

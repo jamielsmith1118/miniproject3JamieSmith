@@ -48,6 +48,10 @@ flask --app FortiDragon run
 ```
 Explain how to run the web application
 ```
+Run this powershell script to upgrade user to admin role
+```
+python -m FortiDragon.make_admin
+```
 
 ```
 Add any other code blocks

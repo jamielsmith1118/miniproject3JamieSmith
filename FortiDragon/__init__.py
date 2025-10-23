@@ -31,6 +31,11 @@ def create_app(test_config=None):
     def home():
             return redirect(url_for('report.index'))
 
+    # Displays the admin page
+    @app.route('/admin')
+    def admin():
+            return render_template('admin.html')
+
     def create_app():
         app = ...
         # existing code omitted
@@ -47,5 +52,9 @@ def create_app(test_config=None):
     from . import report
     app.register_blueprint(report.bp)
     app.add_url_rule('/index', endpoint='index')
+
+    # Import admin blueprint
+    from . import admin
+    app.register_blueprint(admin.bp)
 
     return app

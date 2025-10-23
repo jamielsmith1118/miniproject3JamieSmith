@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<h2>Pending Reports</h2>
+{% if pending %}
+  <table border="1" cellpadding="6">
+    <tr>
+      <th>ID</th><th>Title</th><th>Author</th><th>Status</th><th>Actions</th>
+    </tr>
+    {% for p in pending %}
+      <tr>
+        <td>{{ p['id'] }}</td>
+        <td>{{ p['title'] }}</td>
+        <td>{{ p['username'] }}</td>
+        <td>{{ p['status'] }}</td>
+        <td>
+          <form method="post" action="{{ url_for('admin.approve_report', rid=p['id']) }}" style="display:inline">
+            <button type="submit">Approve</button>
+          </form>
+          <form method="post" action="{{ url_for('admin.reject_report', rid=p['id']) }}" style="display:inline">
+            <button type="submit">Reject</button>
+          </form>
+          <form method="post" action="{{ url_for('admin.delete_report', rid=p['id']) }}" style="display:inline">
+            <button type="submit" onclick="return confirm('Delete this report?')">Delete</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No pending reports.</p>
+{% endif %}
+
+<hr>
+
+<h2>Users</h2>
+<table border="1" cellpadding="6">
+  <tr>
+    <th>ID</th><th>Username</th><th>Name</th><th>Email</th><th>Role</th><th>Change Role</th>
+  </tr>
+  {% for u in users %}
+    <tr>
+      <td>{{ u['id'] }}</td>
+      <td>{{ u['username'] }}</td>
+      <td>{{ (u['first_name'] or '') ~ ' ' ~ (u['last_name'] or '') }}</td>
+      <td>{{ u['email_address'] or '' }}</td>
+      <td>{{ u['role'] }}</td>
+      <td>
+        <form method="post" action="{{ url_for('admin.change_role', uid=u['id']) }}">
+          <select name="role">
+            <option value="user" {{ 'selected' if u['role']=='user' else '' }}>user</option>
+            <option value="admin" {{ 'selected' if u['role']=='admin' else '' }}>admin</option>
+          </select>
+          <button type="submit">Update</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

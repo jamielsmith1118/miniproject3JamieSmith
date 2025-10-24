@@ -3,58 +3,125 @@
 {% block title %}About – Project FortiDragon{% endblock %}
 
 {% block content %}
-<h1>About Project FortiDragon</h1>
+<div class="container mt-4">
+  <h1 class="text-center mb-3">About Project FortiDragon</h1>
 
-<p><strong>Forged in education. Focused on protection.</strong><br>
-Project FortiDragon: Empowering cybersecurity learning through real-world vulnerability tracking.</p>
+  <p class="lead text-center">
+    <strong>Forged in education. Focused on protection.</strong><br>
+    Project FortiDragon: Empowering cybersecurity learning through real-world vulnerability tracking.
+  </p>
 
-<hr>
+  <hr>
 
-<h2>What is Project FortiDragon?</h2>
-<p>
-Project FortiDragon is a Flask-based web application created as part of an advanced programming course.
-It demonstrates how web development and cybersecurity concepts can work together through a simple
-vulnerability disclosure and tracking system.
-</p>
+  <!-- Bootstrap Accordion -->
+  <div class="accordion" id="aboutAccordion">
 
-<h2>Purpose</h2>
-<p>
-The goal of this project is to give students and developers hands-on experience building a secure
-web application that manages vulnerability reports, supports user authentication, and uses a database
-to store submissions. It reflects a practical approach to learning cybersecurity principles through real code.
-</p>
+    <!-- 1️⃣ What is Project FortiDragon -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+          What is Project FortiDragon?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+           data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          Project FortiDragon is a Flask-based web application created as part of an advanced programming course.
+          It demonstrates how web development and cybersecurity concepts can work together through a simple
+          vulnerability disclosure and tracking system.
+        </div>
+      </div>
+    </div>
 
-<h2>How It Works</h2>
-<ul>
-  <li>Users can create accounts and log in securely.</li>
-  <li>Authenticated users can submit vulnerability reports.</li>
-  <li>Each report can include a title, description, severity, and mitigation steps.</li>
-  <li>Admins or reviewers can view and manage the submitted reports.</li>
-</ul>
+    <!-- 2️⃣ Purpose -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+          Purpose
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+           data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          The goal of this project is to give students and developers hands-on experience building a secure
+          web application that manages vulnerability reports, supports user authentication, and uses a database
+          to store submissions. It reflects a practical approach to learning cybersecurity principles through real code.
+        </div>
+      </div>
+    </div>
 
-<h2>Technology Stack</h2>
-<ul>
-  <li><strong>Backend:</strong> Flask (Python web framework)</li>
-  <li><strong>Database:</strong> SQLite for local data storage</li>
-  <li><strong>Templates:</strong> Jinja2 (Flask’s built-in templating system)</li>
-</ul>
+    <!-- 3️⃣ How It Works -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
+          How It Works
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+           data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>Users can create accounts and log in securely.</li>
+            <li>Authenticated users can submit vulnerability reports.</li>
+            <li>Each report can include a title, description, severity, and mitigation steps.</li>
+            <li>Admins or reviewers can view and manage the submitted reports.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<h2>Future Plans</h2>
-<p>
-Future versions of Project FortiDragon could connect to external APIs such as the
-National Vulnerability Database (NVD), VirusTotal, or Jira to expand automation and
-threat intelligence capabilities.
-</p>
+    <!-- 4️⃣ Technology Stack -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                aria-expanded="false" aria-controls="collapseFour">
+          Technology Stack
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+           data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Backend:</strong> Flask (Python web framework)</li>
+            <li><strong>Database:</strong> SQLite for local data storage</li>
+            <li><strong>Templates:</strong> Jinja2 (Flask’s built-in templating system)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<hr>
+    <!-- 5️⃣ Future Plans -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                aria-expanded="false" aria-controls="collapseFive">
+          Future Plans
+        </button>
+      </h2>
+      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+           data-bs-parent="#aboutAccordion">
+        <div class="accordion-body">
+          Future versions of Project FortiDragon could connect to external APIs such as the
+          National Vulnerability Database (NVD), VirusTotal, or Jira to expand automation and
+          threat intelligence capabilities.
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-Created by Jamie Smith as part of the Advanced Programming with Python course.<br>
-Inspired by academic work at Hutchinson Community College and Fort Hays State University.
-</p>
+  <hr class="my-4">
 
-<p>
-<a href="{{ url_for('report.create') }}">Submit a Report</a> |
-<a href="{{ url_for('report.index') }}">View Reports</a>
-</p>
+  <p class="text-center">
+    Created by <strong>Jamie Smith</strong> as part of the <em>Advanced Programming with Python</em> course.<br>
+    Inspired by academic work at Hutchinson Community College and Fort Hays State University.
+  </p>
+
+  <div class="text-center">
+    <a href="{{ url_for('report.create') }}" class="btn btn-primary me-2">Submit a Report</a>
+    <a href="{{ url_for('report.index') }}" class="btn btn-outline-secondary">View Reports</a>
+  </div>
+</div>
 {% endblock %}

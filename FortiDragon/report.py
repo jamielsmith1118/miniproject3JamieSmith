@@ -35,30 +35,59 @@ def vulns():
     ).fetchall()
     return render_template('report/vulns.html', posts=posts)
 
+# @bp.route('/create', methods=('GET', 'POST'))
+# @login_required
+# def create():
+#     if request.method == 'POST':
+#         title = request.form['title']
+#         body = request.form['body']
+#         error = None
+#
+#         if not title:
+#             error = 'Title is required.'
+#
+#         if error is not None:
+#             flash(error)
+#         else:
+#             db = get_db()
+#             db.execute(
+#                 'INSERT INTO post (title, body, author_id)'
+#                 ' VALUES (?, ?, ?)',
+#                 (title, body, g.user['id'])
+#             )
+#             db.commit()
+#             return redirect(url_for('report.index'))
+#
+#     return render_template('report/create.html')
+
+
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
+        title = request.form['title'].strip()
+        body = request.form['body'].strip()
         error = None
 
         if not title:
             error = 'Title is required.'
 
-        if error is not None:
+        if error:
             flash(error)
         else:
             db = get_db()
+            # If your table has defaults for status/severity, you only need title/body/author_id
             db.execute(
-                'INSERT INTO post (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
+                'INSERT INTO post (title, body, author_id) VALUES (?, ?, ?)',
                 (title, body, g.user['id'])
             )
             db.commit()
-            return redirect(url_for('report.index'))
+            flash('Thanks! Your report was submitted and will appear once approved by an admin.')
+            # Redirect back to the create page and trigger the modal
+            return redirect(url_for('report.create', submitted=1))
 
     return render_template('report/create.html')
+
 
 def get_post(id, check_author=True):
     post = get_db().execute(

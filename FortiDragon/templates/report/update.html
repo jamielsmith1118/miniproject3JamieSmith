@@ -18,7 +18,63 @@
 </div>
   </form>
   <hr>
-  <form action="{{ url_for('report.delete', id=post['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
-  </form>
+
+
+{#  <form action="{{ url_for('report.delete', id=post['id']) }}" method="post">#}
+{#  <!-- Button trigger modal -->#}
+{#<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">#}
+{#  Delete#}
+{#</button>#}
+
+<hr>
+
+<!-- Delete form -->
+<form action="{{ url_for('report.delete', id=post['id']) }}" method="post">
+  <!-- Trigger: opens modal, does NOT submit -->
+  <button type="button"
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteModal">
+    Delete
+  </button>
+
+  <!-- Remove the old inline confirm() submit -->
+  <!-- <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');"> -->
+
+  <!-- Blocking (static) Bootstrap modal -->
+  <div class="modal fade"
+       id="deleteModal"
+       tabindex="-1"
+       aria-labelledby="deleteModalLabel"
+       aria-hidden="true"
+       data-bs-backdrop="static"
+       data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+          <!-- Keep a close button; user must choose an action but can still cancel -->
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">
+            Are you sure you want to permanently delete
+            <strong>{{ post['title'] }}</strong>?
+            This action cannot be undone.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <!-- Submits the surrounding form -->
+          <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+{#    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">#}
+{#  </form>#}
 {% endblock %}
+

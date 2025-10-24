@@ -1,54 +1,127 @@
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block header %}#}
+{#  <h1>{% block title %}Report Vulnerability{% endblock %}</h1>#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#  <form method="post">#}
+{#    <!-- Title field (text entry)-->#}
+{#    <label for="title">Title</label>#}
+{#    <input name="title" id="title" value="{{ request.form['title'] }}" required>#}
+{##}
+{#    <!-- Body field (text entry) -->#}
+{#    <label for="body">Body</label>#}
+{#    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>#}
+{##}
+{#    <!-- Severity dropdown (dropdown list)#}
+{#    <label for="severity">Severity</label>#}
+{#    <select name="severity" id="severity" required>#}
+{#      <option value="">-- Select Severity --</option>#}
+{#      <option value="Info" {% if request.form['severity'] == 'Info' %}selected{% endif %}>Info</option>#}
+{#      <option value="Low" {% if request.form['severity'] == 'Low' %}selected{% endif %}>Low</option>#}
+{#      <option value="Medium" {% if request.form['severity'] == 'Medium' %}selected{% endif %}>Medium</option>#}
+{#      <option value="High" {% if request.form['severity'] == 'High' %}selected{% endif %}>High</option>#}
+{#      <option value="Critical" {% if request.form['severity'] == 'Critical' %}selected{% endif %}>Critical</option>#}
+{#    </select>#}
+{#  -->#}
+{##}
+{#    <!-- Mitigation field (text entry)#}
+{#    <label for="mitigation">Mitigation</label>#}
+{#    <textarea name="mitigation" id="mitigation">{{ request.form['mitigation'] }}</textarea>#}
+{#  -->#}
+{##}
+{#    <!-- Status dropdown (dropdown list)#}
+{#    <label for="status">Status</label>#}
+{#    <select name="status" id="status" required>#}
+{#      <option value="">-- Select Status --</option>#}
+{#      <option value="Open" {% if request.form['status'] == 'Open' %}selected{% endif %}>Open</option>#}
+{#      <option value="In Review" {% if request.form['status'] == 'In Review' %}selected{% endif %}>In Review</option>#}
+{#      <option value="On Hold" {% if request.form['status'] == 'On Hold' %}selected{% endif %}>On Hold</option>#}
+{#      <option value="Resolved" {% if request.form['status'] == 'Resolved' %}selected{% endif %}>Resolved</option>#}
+{#      <option value="Closed" {% if request.form['status'] == 'Closed' %}selected{% endif %}>Closed</option>#}
+{#    </select>#}
+{#    -->#}
+{##}
+{#    <!-- Save form -->#}
+{#    <!-- <input type="submit" value="Save"> -->#}
+{#    <div class="d-flex justify-content-end gap-2 mt-3">#}
+{#  <button type="submit" class="btn btn-primary">Save</button>#}
+{#  <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</button>#}
+{#</div>#}
+{##}
+{#  </form>#}
+{#{% endblock %}#}
+
+
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Report Vulnerability{% endblock %}</h1>
-{% endblock %}
+{% block title %}Report Vulnerability{% endblock %}
 
 {% block content %}
-  <form method="post">
-    <!-- Title field (text entry)-->
-    <label for="title">Title</label>
-    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+<div class="container mt-4">
+  <h1 class="mb-3">Report Vulnerability</h1>
 
-    <!-- Body field (text entry) -->
-    <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+  {# Flash messages (shown after redirect) #}
+  {% with msgs = get_flashed_messages() %}
+    {% if msgs %}
+      <div class="alert alert-info" role="alert">
+        {% for m in msgs %}{{ m }}{% if not loop.last %}<br>{% endif %}{% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
 
-    <!-- Severity dropdown (dropdown list)
-    <label for="severity">Severity</label>
-    <select name="severity" id="severity" required>
-      <option value="">-- Select Severity --</option>
-      <option value="Info" {% if request.form['severity'] == 'Info' %}selected{% endif %}>Info</option>
-      <option value="Low" {% if request.form['severity'] == 'Low' %}selected{% endif %}>Low</option>
-      <option value="Medium" {% if request.form['severity'] == 'Medium' %}selected{% endif %}>Medium</option>
-      <option value="High" {% if request.form['severity'] == 'High' %}selected{% endif %}>High</option>
-      <option value="Critical" {% if request.form['severity'] == 'Critical' %}selected{% endif %}>Critical</option>
-    </select>
-  -->
+  <form method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input name="title" id="title" class="form-control"
+             value="{{ request.form['title'] }}" required>
+      <div class="invalid-feedback">Title is required.</div>
+    </div>
 
-    <!-- Mitigation field (text entry)
-    <label for="mitigation">Mitigation</label>
-    <textarea name="mitigation" id="mitigation">{{ request.form['mitigation'] }}</textarea>
-  -->
+    <div class="mb-3">
+      <label for="body" class="form-label">Body</label>
+      <textarea name="body" id="body" class="form-control" rows="6">{{ request.form['body'] }}</textarea>
+    </div>
 
-    <!-- Status dropdown (dropdown list)
-    <label for="status">Status</label>
-    <select name="status" id="status" required>
-      <option value="">-- Select Status --</option>
-      <option value="Open" {% if request.form['status'] == 'Open' %}selected{% endif %}>Open</option>
-      <option value="In Review" {% if request.form['status'] == 'In Review' %}selected{% endif %}>In Review</option>
-      <option value="On Hold" {% if request.form['status'] == 'On Hold' %}selected{% endif %}>On Hold</option>
-      <option value="Resolved" {% if request.form['status'] == 'Resolved' %}selected{% endif %}>Resolved</option>
-      <option value="Closed" {% if request.form['status'] == 'Closed' %}selected{% endif %}>Closed</option>
-    </select>
-    -->
-
-    <!-- Save form -->
-    <!-- <input type="submit" value="Save"> -->
     <div class="d-flex justify-content-end gap-2 mt-3">
-  <button type="submit" class="btn btn-primary">Save</button>
-  <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Cancel</button>
+    </div>
+  </form>
 </div>
 
-  </form>
+{# ---- Submission Modal (blocks background; requires OK) ---- #}
+<div class="modal fade" id="submittedModal" tabindex="-1"
+     aria-labelledby="submittedLabel" aria-hidden="true"
+     data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="submittedLabel">Submission received</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Thanks! Your report was submitted and is pending moderator approval.
+        It will appear in the public list once an admin approves it.
+      </div>
+      <div class="modal-footer">
+        <!-- You can send them to View Reports, Create Another, or just close -->
+        <a href="{{ url_for('report.vulns') }}" class="btn btn-outline-secondary">View Reports</a>
+        <a href="{{ url_for('report.create') }}" class="btn btn-primary">Create Another</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Auto-open the modal only when ?submitted=1 is present #}
+{% if request.args.get('submitted') %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = new bootstrap.Modal(document.getElementById('submittedModal'));
+    modal.show();
+  });
+</script>
+{% endif %}
 {% endblock %}

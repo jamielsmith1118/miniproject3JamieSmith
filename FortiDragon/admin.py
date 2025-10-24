@@ -33,6 +33,20 @@ def approve_report(rid):
     flash('Report approved.')
     return redirect(url_for('admin.dashboard'))
 
+@bp.post('/post/approve_all')
+@login_required
+@admin_required
+def approve_all_reports():
+    db = get_db()
+    cur = db.execute(
+        "UPDATE post SET status = 'Approved' WHERE status IN ('Open','In Review')"
+    )
+    db.commit()
+    # cur.rowcount is the number of rows changed
+    changed = cur.rowcount if cur.rowcount is not None else 0
+    flash(f'Approved {changed} pending report(s).')
+    return redirect(url_for('admin.dashboard'))
+
 @bp.post('/post/<int:rid>/reject')
 @login_required
 @admin_required

@@ -3,6 +3,57 @@
 {% block content %}
 <h1>Admin Dashboard</h1>
 
+{#<form method="post" action="{{ url_for('admin.approve_all_reports') }}" class="mb-3">#}
+{#  <button type="submit" class="btn btn-success btn-sm"#}
+{#          onclick="return confirm('Approve ALL pending reports?');">#}
+{#    Approve All Pending#}
+{#  </button>#}
+{#</form>#}
+<!-- Trigger: does NOT submit; just opens the modal -->
+<button type="button"
+        class="btn btn-success btn-sm mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#approveAllModal">
+  Approve All Pending
+</button>
+
+<!-- Modal: blocks background, requires a choice -->
+<div class="modal fade"
+     id="approveAllModal"
+     tabindex="-1"
+     aria-labelledby="approveAllLabel"
+     aria-hidden="true"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="approveAllLabel">Approve All Pending Reports</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-0">
+          This will change the status of
+          <strong>{{ pending|length }}</strong>
+          report(s) from <em>Open/In Review</em> to <strong>Approved</strong>.
+          Are you sure you want to continue?
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+
+        <!-- The form lives in the modal so Confirm actually POSTs -->
+        <form method="post" action="{{ url_for('admin.approve_all_reports') }}" class="d-inline">
+          <button type="submit" class="btn btn-success">Confirm Approve All</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <h2>Pending Reports</h2>
 {% if pending %}
   <table class="table-simple">

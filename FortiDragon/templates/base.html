@@ -28,7 +28,7 @@
 
       <li><span>Hello, {{ g.user['first_name'] }}</span>
       <li><a href="{{ url_for('index') }}">Home</a>
-      <li><a href="{{ url_for('report.vulns') }}">Vulnerabilities</a>
+      <li><a href="{{ url_for('report.vulns') }}">Reports</a>
       <li><a href="{{ url_for('report.create') }}">Submit Report</a>
       <li><a href="{{ url_for('report.profile') }}">User Profile</a>
       {% if g.user and g.user.get('role') == 'admin' %}
